@@ -1,0 +1,98 @@
+body {
+  background-color: #121212;
+  color: #eee;
+}
+
+/* ===================== */
+/*      SUDOKU GRID      */
+/* ===================== */
+.grid-container {
+  display: grid;
+  margin: 20px auto;
+  padding: 0;
+  gap: 0;                  
+  border-collapse: collapse;
+
+  /* ✅ Ensure square layout */
+  aspect-ratio: 1 / 1;     
+  width: min(90vw, 500px); /* responsive: shrink on small, max 500px */
+  
+  --size: 9; /* updated in JS */
+  grid-template-columns: repeat(var(--size), 1fr);
+  grid-template-rows: repeat(var(--size), 1fr);
+}
+
+.big-btn {
+  height: 70px;       /* ✅ double height */
+  font-size: 1.3rem;  /* larger text */
+  font-weight: bold;
+}
+
+
+.grid-cell {
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: normal;
+  text-align: center;
+  vertical-align: middle;
+
+  width: 100%;  /* ✅ fills its grid cell */
+  height: 100%;
+  
+  background: #1a1a1a;
+  color: #eee;
+  border: 1px solid #333;
+  font-size: clamp(12px, 3vw, 18px);
+  box-sizing: border-box;
+}
+
+/* Remove number input arrows */
+.grid-cell::-webkit-outer-spin-button,
+.grid-cell::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.grid-cell[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Subgrid thick borders */
+.subgrid-top    { border-top: 3px solid #eee !important; }
+.subgrid-left   { border-left: 3px solid #eee !important; }
+.subgrid-right  { border-right: 3px solid #eee !important; }
+.subgrid-bottom { border-bottom: 3px solid #eee !important; }
+
+/* ===================== */
+/*      CELL STATES      */
+/* ===================== */
+.try       { background-color: #194d19 !important; }
+.backtrack { background-color: #4d1919 !important; }
+.given     { font-weight: bold; background: #333 !important; }
+.hint      { background-color: #003366 !important; font-weight: bold; }
+.mistake   { background-color: #660000 !important; }
+.correct   { background-color: #194d19 !important; }
+
+.strategy-highlight {
+  background-color: #666600 !important;
+  animation: flash 1s ease-in-out;
+}
+
+@keyframes flash {
+  0%   { background-color: #ffff99; }
+  100% { background-color: #003366; }
+}
+
+/* ===================== */
+/*     OPTIONS PANEL     */
+/* ===================== */
+.options-panel {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+}
+
+.options-panel h4 {
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
