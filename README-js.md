@@ -13,22 +13,26 @@ Right then, this is a fully-fledged Sudoku solver and generator written entirely
 ## Features
 
 ### Solving
+
 - Instant solving using backtracking algorithm
 - Visual mode with adjustable speed so you can watch it work
 - Human-style solving that explains each step
 
 ### Grid Management
+
 - Variable grid sizes (4x4 up to 16x16, though 9x9 is the standard)
 - Highlight subgrids option for easier viewing
 - Pre-loaded example puzzles (easy, medium, hard)
 
 ### Helper Functions
+
 - **Check Mistakes**: Highlights incorrect entries in red
 - **Give Hint**: Fills in one random cell correctly
 - **Validate Completion**: Checks if your solution is correct
 - **Step Through**: Apply human strategies one step at a time
 
 ### Generation
+
 - Random puzzle generation with automatic difficulty rating
 - Guarantees unique solutions (well, should do anyway)
 
@@ -42,6 +46,7 @@ Right then, this is a fully-fledged Sudoku solver and generator written entirely
 ## Technical Bits
 
 The code uses:
+
 - Pure JavaScript (ES6+) - no frameworks, no WASM
 - Async/await for the visual solving animations
 - Bootstrap 5 for the UI (makes it look decent without much effort)
@@ -51,9 +56,11 @@ The code uses:
 ## The Algorithm
 
 ### Backtracking Solver
+
 Tries every number 1-9 in each empty cell. If a number works, it moves on. If it gets stuck, it backtracks and tries a different number. Dead simple but effective.
 
 ### Human Strategies
+
 - **Naked Singles**: Cells where only one number is possible
 - **Hidden Singles**: Numbers that can only go in one place in a row/column/box
 
@@ -62,6 +69,7 @@ These are the strategies humans actually use to solve sudoku, rather than just g
 ## Browser Compatibility
 
 Should work in any modern browser that supports:
+
 - ES6 JavaScript
 - Async/await
 - CSS Grid
@@ -72,6 +80,7 @@ Should work in any modern browser that supports:
 Just open `index.html` in your browser. No build step, no npm, no nonsense.
 
 If you want a proper server:
+
 ```bash
 python3 -m http.server 8000
 # Then visit http://localhost:8000

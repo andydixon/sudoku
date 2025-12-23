@@ -11,7 +11,7 @@
  */
 
 // Just build the grid when the page loads - simple as that
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   buildGrid();
 });
 
@@ -21,52 +21,37 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 const examples = {
   easy: [
-    5, 3, 0, 0, 7, 0, 0, 0, 0, 
-    6, 0, 0, 1, 9, 5, 0, 0, 0, 
-    0, 9, 8, 0, 0, 0, 0, 6, 0, 
-    8, 0, 0, 0, 6, 0, 0, 0, 3, 
-    4, 0, 0, 8, 0, 3, 0, 0, 1, 
-    7, 0, 0, 0, 2, 0, 0, 0, 6, 
-    0, 6, 0, 0, 0, 0, 2, 8, 0, 
-    0, 0, 0, 4, 1, 9, 0, 0, 5, 
-    0, 0, 0, 0, 8, 0, 0, 7, 9
+    5, 3, 0, 0, 7, 0, 0, 0, 0, 6, 0, 0, 1, 9, 5, 0, 0, 0, 0, 9, 8, 0, 0, 0, 0,
+    6, 0, 8, 0, 0, 0, 6, 0, 0, 0, 3, 4, 0, 0, 8, 0, 3, 0, 0, 1, 7, 0, 0, 0, 2,
+    0, 0, 0, 6, 0, 6, 0, 0, 0, 0, 2, 8, 0, 0, 0, 0, 4, 1, 9, 0, 0, 5, 0, 0, 0,
+    0, 8, 0, 0, 7, 9,
   ],
   medium: [
-    0, 0, 0, 0, 0, 0, 0, 0, 1, 
-    0, 0, 0, 0, 0, 0, 0, 2, 0, 
-    0, 0, 0, 0, 0, 3, 0, 0, 0, 
-    0, 0, 1, 0, 0, 0, 0, 0, 0, 
-    0, 0, 0, 5, 0, 9, 0, 0, 0, 
-    0, 0, 0, 0, 0, 0, 4, 0, 0, 
-    0, 0, 0, 2, 0, 0, 0, 0, 0, 
-    0, 3, 0, 0, 0, 0, 0, 0, 0, 
-    9, 0, 0, 0, 0, 0, 0, 0, 0
+    0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 3, 0,
+    0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 4, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0,
+    0, 0, 0, 0, 0, 0,
   ],
   hard: [
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 
-    0, 0, 3, 6, 0, 0, 0, 0, 0, 
-    0, 7, 0, 0, 9, 0, 2, 0, 0, 
-    0, 5, 0, 0, 0, 7, 0, 0, 0, 
-    0, 0, 0, 0, 4, 5, 7, 0, 0, 
-    0, 0, 0, 1, 0, 0, 0, 3, 0, 
-    0, 0, 1, 0, 0, 0, 0, 6, 8, 
-    0, 0, 8, 5, 0, 0, 0, 1, 0, 
-    0, 9, 0, 0, 0, 0, 4, 0, 0
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 6, 0, 0, 0, 0, 0, 0, 7, 0, 0, 9, 0, 2,
+    0, 0, 0, 5, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 4, 5, 7, 0, 0, 0, 0, 0, 1, 0,
+    0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0, 6, 8, 0, 0, 8, 5, 0, 0, 0, 1, 0, 0, 9, 0,
+    0, 0, 0, 4, 0, 0,
   ],
 };
 
 /**
  * Builds the Sudoku grid in the DOM
- * 
+ *
  * This takes the size from the input field and creates a proper grid
  * with all the fancy border highlighting for the 3x3 boxes (or whatever size boxes)
- * 
+ *
  * Honestly this bit is more about CSS than JS but hey ho
  */
 function buildGrid() {
   const size = parseInt(document.getElementById("sizeInput").value);
   const grid = document.getElementById("grid");
-  
+
   // Clear out the old grid - fresh start
   grid.innerHTML = "";
 
@@ -89,10 +74,10 @@ function buildGrid() {
       if (highlightSubgrids && Number.isInteger(subSize)) {
         if (i % subSize === 0) input.classList.add("subgrid-top");
         if (j % subSize === 0) input.classList.add("subgrid-left");
-        if (j === size - 1) input.classList.add("subgrid-right");  
+        if (j === size - 1) input.classList.add("subgrid-right");
         if (i === size - 1) input.classList.add("subgrid-bottom");
       }
-      
+
       grid.appendChild(input);
     }
   }
@@ -100,12 +85,12 @@ function buildGrid() {
 
 /**
  * Check if sticking a number in a specific spot is actually legal
- * 
+ *
  * Has to check:
  * - Same row (no duplicates obviously)
  * - Same column (same deal)
  * - Same 3x3 box or whatever sized box we're using
- * 
+ *
  * Returns true if the number can go there, false if it's gonna break the rules
  */
 function isSafe(grid, row, col, num, size) {
@@ -134,10 +119,10 @@ function isSafe(grid, row, col, num, size) {
 
 /**
  * The main solving algorithm - classic backtracking
- * 
+ *
  * Basically tries every number in every empty cell until it finds something that works
  * If it gets stuck, it backs up and tries something different
- * 
+ *
  * It's brute force but it's reliable as hell
  */
 function solveBacktrack(grid, size) {
@@ -181,7 +166,7 @@ function solveBacktrack(grid, size) {
 
 /**
  * Visual solving - same as regular solve but with pretty animations
- * 
+ *
  * This one calls a callback function for each step so you can see it working
  * Runs in a separate "thread" (well, async) so it doesn't freeze the page
  */
@@ -209,11 +194,11 @@ async function solveBacktrackVisual(grid, size, callback, delay) {
   for (let num = 1; num <= size; num++) {
     if (isSafe(grid, row, col, num, size)) {
       grid[row][col] = num;
-      
+
       // Show what we're trying
       if (callback) {
         callback(row, col, num, "try");
-        await new Promise(resolve => setTimeout(resolve, delay));
+        await new Promise((resolve) => setTimeout(resolve, delay));
       }
 
       // Keep going
@@ -223,10 +208,10 @@ async function solveBacktrackVisual(grid, size, callback, delay) {
 
       // Nope, didn't work - backtrack
       grid[row][col] = 0;
-      
+
       if (callback) {
         callback(row, col, 0, "backtrack");
-        await new Promise(resolve => setTimeout(resolve, delay));
+        await new Promise((resolve) => setTimeout(resolve, delay));
       }
     }
   }
@@ -236,7 +221,7 @@ async function solveBacktrackVisual(grid, size, callback, delay) {
 
 /**
  * Converts flat array to 2D grid because that's easier to work with
- * 
+ *
  * Flat arrays are horrible for sudoku - 2D is much more natural
  */
 function flatToGrid(flat, size) {
@@ -266,7 +251,7 @@ function gridToFlat(grid) {
 
 /**
  * Main solve function that gets called when you click the solve button
- * 
+ *
  * Can do it instantly or with visual mode enabled
  * Visual mode is slower but looks dead cool
  */
@@ -274,7 +259,7 @@ async function solve() {
   const size = parseInt(document.getElementById("sizeInput").value);
   const inputs = document.querySelectorAll("#grid input");
   const values = [];
-  
+
   // Grab all the values from the grid
   inputs.forEach((input) => {
     const val = input.value ? parseInt(input.value) : 0;
@@ -288,18 +273,23 @@ async function solve() {
     const delay = parseInt(document.getElementById("speedRange").value);
     const grid = flatToGrid(values, size);
 
-    const solved = await solveBacktrackVisual(grid, size, (row, col, num, action) => {
-      const idx = row * size + col;
-      const cell = inputs[idx];
-      cell.value = num || "";
-      cell.classList.remove("try", "backtrack");
-      
-      if (action === "try") {
-        cell.classList.add("try");
-      } else if (action === "backtrack") {
-        cell.classList.add("backtrack");
-      }
-    }, delay);
+    const solved = await solveBacktrackVisual(
+      grid,
+      size,
+      (row, col, num, action) => {
+        const idx = row * size + col;
+        const cell = inputs[idx];
+        cell.value = num || "";
+        cell.classList.remove("try", "backtrack");
+
+        if (action === "try") {
+          cell.classList.add("try");
+        } else if (action === "backtrack") {
+          cell.classList.add("backtrack");
+        }
+      },
+      delay
+    );
 
     // Clean up classes when done
     inputs.forEach((c) => c.classList.remove("try", "backtrack"));
@@ -316,7 +306,7 @@ async function solve() {
   } else {
     // Instant solve - just do it quick
     const grid = flatToGrid(values, size);
-    
+
     if (solveBacktrack(grid, size)) {
       const result = gridToFlat(grid);
       result.forEach((val, idx) => {
@@ -331,18 +321,18 @@ async function solve() {
 
 /**
  * Loads one of the example puzzles into the grid
- * 
+ *
  * Makes the given cells read-only so you can't accidentally change them
  * (Because let's be honest, that's annoying when it happens)
  */
 function loadExample() {
   const choice = document.getElementById("exampleSelect").value;
   if (!choice) return; // Nothing selected, don't do anything
-  
+
   const puzzle = examples[choice];
   document.getElementById("sizeInput").value = 9; // Examples are all 9x9
   buildGrid();
-  
+
   const inputs = document.querySelectorAll("#grid input");
   puzzle.forEach((val, idx) => {
     const cell = inputs[idx];
@@ -356,7 +346,7 @@ function loadExample() {
 
 /**
  * Clears the entire grid
- * 
+ *
  * Gets rid of all values and makes everything editable again
  * Fresh start basically
  */
@@ -366,13 +356,20 @@ function clearGrid() {
     cell.value = "";
     cell.readOnly = false;
     // Remove all the fancy classes we might have added
-    cell.classList.remove("try", "backtrack", "given", "hint", "mistake", "correct");
+    cell.classList.remove(
+      "try",
+      "backtrack",
+      "given",
+      "hint",
+      "mistake",
+      "correct"
+    );
   });
 }
 
 /**
  * Checks if any of the user's entered numbers are wrong
- * 
+ *
  * Solves the puzzle first, then compares what they've entered
  * Highlights mistakes in red so they can fix them
  */
@@ -380,7 +377,7 @@ function checkMistakes() {
   const size = parseInt(document.getElementById("sizeInput").value);
   const inputs = document.querySelectorAll("#grid input");
   const values = [];
-  
+
   inputs.forEach((i) => {
     values.push(i.value ? parseInt(i.value) : 0);
   });
@@ -391,7 +388,7 @@ function checkMistakes() {
     showToast("No valid solution exists!", "danger");
     return;
   }
-  
+
   const solved = gridToFlat(grid);
 
   // Now check what they've entered against the solution
@@ -401,17 +398,21 @@ function checkMistakes() {
     } else {
       cell.classList.remove("mistake");
     }
-    
+
     // Remove the mistake class when they edit the cell
-    cell.addEventListener("input", () => {
-      cell.classList.remove("mistake");
-    }, { once: true });
+    cell.addEventListener(
+      "input",
+      () => {
+        cell.classList.remove("mistake");
+      },
+      { once: true }
+    );
   });
 }
 
 /**
  * Gives the user a hint by filling in one random empty cell
- * 
+ *
  * Picks a random empty cell and fills it with the correct number
  * Marks it as a hint so they know it wasn't them who filled it in
  */
@@ -419,7 +420,7 @@ function giveHint() {
   const size = parseInt(document.getElementById("sizeInput").value);
   const inputs = document.querySelectorAll("#grid input");
   const values = [];
-  
+
   inputs.forEach((i) => {
     values.push(i.value ? parseInt(i.value) : 0);
   });
@@ -430,7 +431,7 @@ function giveHint() {
     showToast("No valid solution exists!", "danger");
     return;
   }
-  
+
   const solved = gridToFlat(grid);
 
   // Find all the empty cells
@@ -447,7 +448,8 @@ function giveHint() {
   }
 
   // Pick a random empty cell
-  const randomIdx = emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+  const randomIdx =
+    emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
   const cell = inputs[randomIdx];
   cell.value = solved[randomIdx];
   cell.classList.add("hint");
@@ -456,11 +458,11 @@ function giveHint() {
 
 /**
  * Validates whether the puzzle is completed correctly
- * 
+ *
  * Checks if:
  * 1. All cells are filled
  * 2. The solution is actually correct
- * 
+ *
  * Then gives them a pat on the back (or tells them what's wrong)
  */
 function validateCompletion() {
@@ -483,8 +485,8 @@ function validateCompletion() {
 
   // Check if it's correct by solving from this state
   const grid = flatToGrid(values, size);
-  const gridCopy = grid.map(row => [...row]); // Make a copy
-  
+  const gridCopy = grid.map((row) => [...row]); // Make a copy
+
   if (!solveBacktrack(gridCopy, size)) {
     showToast("No valid solution exists!", "danger");
     return;
@@ -501,11 +503,15 @@ function validateCompletion() {
       cell.classList.remove("mistake");
       cell.classList.add("correct");
     }
-    
+
     // Clean up on edit
-    cell.addEventListener("input", () => {
-      cell.classList.remove("mistake", "correct");
-    }, { once: true });
+    cell.addEventListener(
+      "input",
+      () => {
+        cell.classList.remove("mistake", "correct");
+      },
+      { once: true }
+    );
   });
 
   if (allCorrect) {
@@ -521,7 +527,7 @@ function validateCompletion() {
 
 /**
  * Finds "naked singles" - cells where only one number is possible
- * 
+ *
  * These are the easy ones that humans spot first
  * If a cell can only have one possible number, that's a naked single
  */
@@ -531,7 +537,7 @@ function findNakedSingle(grid, size) {
       if (grid[r][c] === 0) {
         // Cell is empty, check what numbers are possible
         const candidates = [];
-        
+
         for (let num = 1; num <= size; num++) {
           if (isSafe(grid, r, c, num, size)) {
             candidates.push(num);
@@ -540,18 +546,23 @@ function findNakedSingle(grid, size) {
 
         // If only one number is possible, we found a naked single!
         if (candidates.length === 1) {
-          return { row: r, col: c, val: candidates[0], strategy: "Naked Single" };
+          return {
+            row: r,
+            col: c,
+            val: candidates[0],
+            strategy: "Naked Single",
+          };
         }
       }
     }
   }
-  
+
   return null; // No naked singles found
 }
 
 /**
  * Finds "hidden singles" - numbers that can only go in one place in a row/column/box
- * 
+ *
  * This is a bit more advanced than naked singles
  * If a number can only fit in one cell in a row/column/box, that's a hidden single
  */
@@ -563,17 +574,22 @@ function findHiddenSingle(grid, size) {
     for (let num = 1; num <= size; num++) {
       let count = 0;
       let position = -1;
-      
+
       for (let c = 0; c < size; c++) {
         if (grid[r][c] === 0 && isSafe(grid, r, c, num, size)) {
           count++;
           position = c;
         }
       }
-      
+
       // If this number can only go in one place in this row, found it!
       if (count === 1) {
-        return { row: r, col: position, val: num, strategy: "Hidden Single (Row)" };
+        return {
+          row: r,
+          col: position,
+          val: num,
+          strategy: "Hidden Single (Row)",
+        };
       }
     }
   }
@@ -583,16 +599,21 @@ function findHiddenSingle(grid, size) {
     for (let num = 1; num <= size; num++) {
       let count = 0;
       let position = -1;
-      
+
       for (let r = 0; r < size; r++) {
         if (grid[r][c] === 0 && isSafe(grid, r, c, num, size)) {
           count++;
           position = r;
         }
       }
-      
+
       if (count === 1) {
-        return { row: position, col: c, val: num, strategy: "Hidden Single (Column)" };
+        return {
+          row: position,
+          col: c,
+          val: num,
+          strategy: "Hidden Single (Column)",
+        };
       }
     }
   }
@@ -604,12 +625,12 @@ function findHiddenSingle(grid, size) {
         let count = 0;
         let posR = -1;
         let posC = -1;
-        
+
         for (let i = 0; i < subSize; i++) {
           for (let j = 0; j < subSize; j++) {
             const r = boxRow + i;
             const c = boxCol + j;
-            
+
             if (grid[r][c] === 0 && isSafe(grid, r, c, num, size)) {
               count++;
               posR = r;
@@ -617,9 +638,14 @@ function findHiddenSingle(grid, size) {
             }
           }
         }
-        
+
         if (count === 1) {
-          return { row: posR, col: posC, val: num, strategy: "Hidden Single (Box)" };
+          return {
+            row: posR,
+            col: posC,
+            val: num,
+            strategy: "Hidden Single (Box)",
+          };
         }
       }
     }
@@ -630,7 +656,7 @@ function findHiddenSingle(grid, size) {
 
 /**
  * Applies human solving strategies step by step
- * 
+ *
  * Returns an array of steps that a human would take
  * Each step includes the cell position, value, and which strategy was used
  */
@@ -666,7 +692,7 @@ function humanSolve(grid, size) {
 
 /**
  * UI function for the "Human Solve" button
- * 
+ *
  * Applies all the human strategies automatically with nice animations
  * Shows what strategy was used for each step (educational innit)
  */
@@ -674,7 +700,7 @@ async function humanSolveUI() {
   const size = parseInt(document.getElementById("sizeInput").value);
   const inputs = document.querySelectorAll("#grid input");
   const values = [];
-  
+
   inputs.forEach((i) => {
     values.push(i.value ? parseInt(i.value) : 0);
   });
@@ -683,7 +709,10 @@ async function humanSolveUI() {
   const steps = humanSolve(grid, size);
 
   if (!steps || steps.length === 0) {
-    showToast("No human strategies found! Might need backtracking for this one.", "danger");
+    showToast(
+      "No human strategies found! Might need backtracking for this one.",
+      "danger"
+    );
     return;
   }
 
@@ -692,16 +721,19 @@ async function humanSolveUI() {
     const step = steps[i];
     const idx = step.row * size + step.col;
     const cell = inputs[idx];
-    
+
     cell.value = step.val;
     cell.readOnly = true;
     cell.classList.add("hint", "strategy-highlight");
     cell.title = step.strategy; // Show strategy on hover
-    
-    showToast(`Applied ${step.strategy} at (${step.row + 1},${step.col + 1})`, "info");
-    
+
+    showToast(
+      `Applied ${step.strategy} at (${step.row + 1},${step.col + 1})`,
+      "info"
+    );
+
     // Wait a bit before doing the next one
-    await new Promise(resolve => setTimeout(resolve, 1200));
+    await new Promise((resolve) => setTimeout(resolve, 1200));
     cell.classList.remove("strategy-highlight");
   }
 
@@ -715,7 +747,7 @@ let stepSolveIndex = 0;
 
 /**
  * Starts step-through mode for human solving
- * 
+ *
  * Calculates all the steps but doesn't apply them yet
  * User can then click "Next Step" to apply them one at a time
  */
@@ -723,7 +755,7 @@ function startStepSolve() {
   const size = parseInt(document.getElementById("sizeInput").value);
   const inputs = document.querySelectorAll("#grid input");
   const values = [];
-  
+
   inputs.forEach((i) => {
     values.push(i.value ? parseInt(i.value) : 0);
   });
@@ -743,7 +775,7 @@ function startStepSolve() {
 
 /**
  * Applies the next step in step-through mode
- * 
+ *
  * Shows which cell and what strategy is being used
  * Hides the button when we run out of steps
  */
@@ -766,7 +798,9 @@ function applyNextStep() {
   cell.title = step.strategy;
 
   showToast(
-    `Step ${stepSolveIndex + 1}: ${step.strategy} at (${step.row + 1},${step.col + 1})`,
+    `Step ${stepSolveIndex + 1}: ${step.strategy} at (${step.row + 1},${
+      step.col + 1
+    })`,
     "info"
   );
 
@@ -788,13 +822,13 @@ function applyNextStep() {
 
 /**
  * Fills the diagonal boxes with random numbers
- * 
+ *
  * These boxes don't interfere with each other, so we can fill them independently
  * Makes the generation process faster
  */
 function fillDiagonalBoxes(grid, size) {
   const subSize = Math.floor(Math.sqrt(size));
-  
+
   // Fill each diagonal box
   for (let box = 0; box < size; box += subSize) {
     fillBox(grid, box, box, subSize, size);
@@ -803,7 +837,7 @@ function fillDiagonalBoxes(grid, size) {
 
 /**
  * Fills a single box with random numbers 1 to 9
- * 
+ *
  * Uses a shuffled array so we don't repeat numbers
  */
 function fillBox(grid, row, col, subSize, size) {
@@ -812,7 +846,7 @@ function fillBox(grid, row, col, subSize, size) {
   for (let i = 1; i <= size; i++) {
     numbers.push(i);
   }
-  
+
   // Shuffle them (Fisher-Yates shuffle)
   for (let i = numbers.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -831,17 +865,17 @@ function fillBox(grid, row, col, subSize, size) {
 
 /**
  * Removes random cells from the solved grid to create the puzzle
- * 
+ *
  * The number of cells removed determines the difficulty
  * More removed = harder puzzle
  */
 function removeCells(grid, size, count) {
   let removed = 0;
-  
+
   while (removed < count) {
     const i = Math.floor(Math.random() * size);
     const j = Math.floor(Math.random() * size);
-    
+
     if (grid[i][j] !== 0) {
       grid[i][j] = 0;
       removed++;
@@ -851,7 +885,7 @@ function removeCells(grid, size, count) {
 
 /**
  * Generates a brand new random sudoku puzzle
- * 
+ *
  * Process:
  * 1. Fill diagonal boxes with random numbers
  * 2. Solve the rest using backtracking
@@ -861,7 +895,7 @@ function removeCells(grid, size, count) {
 function generatePuzzle() {
   const size = 9; // Only do 9x9 for now
   const grid = [];
-  
+
   // Create empty grid
   for (let i = 0; i < size; i++) {
     grid[i] = [];
@@ -893,7 +927,7 @@ function generatePuzzle() {
 
   const inputs = document.querySelectorAll("#grid input");
   const flatPuzzle = gridToFlat(grid);
-  
+
   flatPuzzle.forEach((val, idx) => {
     const cell = inputs[idx];
     cell.value = val === 0 ? "" : val;
@@ -908,31 +942,31 @@ function generatePuzzle() {
 
 /**
  * Shows a toast notification to the user
- * 
+ *
  * Uses Bootstrap's toast component for the nice animations
  * Automatically disappears after 3 seconds
  */
 function showToast(message, type = "info") {
   const container = document.getElementById("toastContainer");
   const toast = document.createElement("div");
-  
+
   toast.className = `toast align-items-center text-bg-${type} border-0`;
   toast.role = "alert";
   toast.ariaLive = "assertive";
   toast.ariaAtomic = "true";
-  
+
   toast.innerHTML = `
     <div class="d-flex">
       <div class="toast-body">${message}</div>
       <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
     </div>
   `;
-  
+
   container.appendChild(toast);
-  
+
   const bsToast = new bootstrap.Toast(toast, { delay: 3000 });
   bsToast.show();
-  
+
   // Remove from DOM when hidden
   toast.addEventListener("hidden.bs.toast", () => {
     toast.remove();
@@ -941,7 +975,7 @@ function showToast(message, type = "info") {
 
 /**
  * Updates the speed display when the slider moves
- * 
+ *
  * Just shows the current value next to the slider
  * Nothing fancy but it's nice to see what you're setting
  */
